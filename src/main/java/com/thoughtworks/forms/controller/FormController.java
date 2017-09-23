@@ -27,8 +27,17 @@ public class FormController {
 
 
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public Form find(@PathVariable String id) {
-        return formRepository.findOne(id);
+    public Object find(@PathVariable String id) {
+        Form form = formRepository.findOne(id);
+        return form.getStructure();
+    }
+
+    @RequestMapping(value="/{id}", method = RequestMethod.POST)
+    public Form update(@PathVariable String id, @RequestBody Object payload) {
+        Form form = formRepository.findOne(id);
+        System.err.print(payload);
+        form.setStructure(payload);
+        return formRepository.save(form);
     }
 
 }

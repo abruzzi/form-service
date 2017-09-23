@@ -1,7 +1,7 @@
 package com.thoughtworks.forms.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.*;
 
 import java.util.List;
 
@@ -10,7 +10,16 @@ public class Form {
     @Id
     private String id;
 
-    private List<Step> steps;
+    @org.springframework.data.mongodb.core.mapping.Field
+    private Object structure;
+
+    public Object getStructure() {
+        return structure;
+    }
+
+    public void setStructure(Object structure) {
+        this.structure = structure;
+    }
 
     public String getId() {
         return id;
@@ -18,13 +27,5 @@ public class Form {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public List<Step> getSteps() {
-        return steps;
-    }
-
-    public void setSteps(List<Step> steps) {
-        this.steps = steps;
     }
 }
